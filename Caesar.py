@@ -20,4 +20,11 @@ class Caesar(CipherInterface):
 		return ciphertext
 
 	def decrypt(self, ciphertext):#decrpyt almost identical to encrypt TODO
-		pass
+		ciphertext = ciphertext.upper()
+		plaintext = ""
+		for char in ciphertext:
+			if char in self.alphabet:
+				pos = self.alphabet.find(char)
+				plaintext += self.alphabet[pos - int(self.key) % 26]
+
+		return plaintext
