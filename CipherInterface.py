@@ -1,12 +1,15 @@
-class CipherInterface:
-	def __init__(self):
-		pass
+from abc import ABCMeta, abstractmethod
 
-	def setKey(self, key):
+class CipherInterface(metaclass=ABCMeta):
+	#not exactly sure this is how to implement an interface
+	def __init__(self):
+		self.key = ""
+
+	def setKey(self, keyString):
 		pass
 
 	def encrypt(self, plaintext):
 		pass
 
-	def decrypt(self, cipher):
+	def decrypt(self, ciphertext):
 		pass
