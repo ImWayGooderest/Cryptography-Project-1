@@ -6,7 +6,7 @@ class Vigenre(CipherInterface):
 		self.key = ""
 
 	def setKey(self, keyString):
-		self.key = keyString
+		self.key = keyString.upper()
 		return True
 
 	def encrypt(self, plaintext):
@@ -16,10 +16,21 @@ class Vigenre(CipherInterface):
 		for char in plaintext:
 			if char in self.alphabet:
 				pos = self.alphabet.find(char)
-				ciphertext += self.alphabet[pos + int(self.key) % 26]
-				index
+				keyPos = self.alphabet.find(self.key[index % len(self.key)])
+				ciphertext += self.alphabet[(pos + keyPos) % 26]
+				index += 1
 
 		return ciphertext
 
 	def decrypt(self, ciphertext):
-		pass
+		ciphertext = ciphertext.upper()
+		plaintext = ""
+		index = 0
+		for char in ciphertext:
+			if char in self.alphabet:
+				pos = self.alphabet.find(char)
+				keyPos = self.alphabet.find(self.key[index % len(self.key)])
+				plaintext += self.alphabet[(pos - keyPos) % 26]
+				index += 1
+
+		return plaintext
