@@ -15,16 +15,16 @@ class Caesar(CipherInterface):
 		for char in plaintext:
 			if char in self.alphabet:
 				pos = self.alphabet.find(char)
-				ciphertext += self.alphabet[pos + int(self.key) % 26]
+				ciphertext += self.alphabet[(pos + int(self.key)) % 26]
 
 		return ciphertext
 
-	def decrypt(self, ciphertext):#decrpyt almost identical to encrypt TODO
+	def decrypt(self, ciphertext):
 		ciphertext = ciphertext.upper()
 		plaintext = ""
 		for char in ciphertext:
 			if char in self.alphabet:
 				pos = self.alphabet.find(char)
-				plaintext += self.alphabet[pos - int(self.key) % 26]
+				plaintext += self.alphabet[(pos - int(self.key)) % 26]
 
 		return plaintext
