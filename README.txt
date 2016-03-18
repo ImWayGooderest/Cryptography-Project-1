@@ -14,7 +14,8 @@ python <CIPHER NAME> <KEY> <ENC/DEC> <INPUT FILE> OUTPUT FILE>
 Example: python cipher.py RFC 3 DEC iFile.txt oFile.txt
 
 Extra Credit: 
-<TODO>
+Brief Description Done.
+<Todo> Program
 
 Special Info:
 <TODO>
