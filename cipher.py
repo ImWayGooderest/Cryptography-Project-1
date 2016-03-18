@@ -69,7 +69,7 @@ def main():
 	cipher.setKey(testKey)
 	ciphertext = cipher.encrypt("meet me after the toga party")
 	print(ciphertext)'''
-	###print(cipher.decrypt(ciphertext))
+	##print(cipher.decrypt(ciphertext))
 
 	'''cipherName = sys.argv[1]
 	inputKey = sys.argv[2]
@@ -82,8 +82,6 @@ def main():
 	'''if(cipherName == "PLF"):
 		myCipher = Playfair.Playfair()
 		myCipher.setKey(inputKey)'''
-
-
 
 
 if __name__ == "__main__":
