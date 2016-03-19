@@ -1,10 +1,8 @@
 from CipherInterface import CipherInterface
-import math
 
 class RowTransposition(CipherInterface):
 	def __init__(self):
 		self.key = []
-		self.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	def setKey(self, keyString):
 		self.key = keyString.split()
@@ -14,38 +12,54 @@ class RowTransposition(CipherInterface):
 			if int(keyPart) != count:
 				return False
 			count += 1
-		return True
+
 
 	def encrypt(self, plaintext):
-		numberOfCol = len(self.key)
-		ciphertext = ""
-		plaintext = plaintext.upper()
-		plaintextModified = ""
-		for char in plaintext:#strip out non alphabetic chars
-			if char in self.alphabet:
-				plaintextModified += char
+		plaintext = plaintext.replace('\n', '')
+		plaintext = plaintext.replace(" ", "")
+		plainLen = len(plaintext)
+		print(plainLen)
+		keyLen = ''.join(self.key)
+		keyLen = len(keyLen)
+		counter = 0
 
-		textSize = len(plaintextModified)
-		numberOfRow = math.ceil(textSize/numberOfCol)
-		plaintextMatrix = [["X" for x in range(numberOfCol)] for x in range(numberOfRow)] #matrix goes matrix[row][col]
-		cipherMatrix = [["X" for x in range(numberOfCol)] for x in range(numberOfRow)]
-		count = 0
+		for i in range(0, keyLen):
+			if plainLen % keyLen != 0:
+				counter += 1
+				print(counter)
 
-		#fill matrix
-		for row in range(0, len(plaintextMatrix)):
-			for col in range(0,len(plaintextMatrix[row])):
-				if(count < len(plaintextModified)):
-					plaintextMatrix[row][col] = plaintextModified[count]
-					count += 1
-		#shuffle matrix according to
-		count = 0
-		for i in range(0,len(plaintextMatrix[0])):
-			while count < len(plaintextMatrix):
-				cipherMatrix[count][i] = plaintextMatrix[count][int(self.key[i])-1]
-				ciphertext += plaintextMatrix[count][int(self.key[i])-1]
-				count += 1
-			count = 0
-		return ciphertext
+		print(counter)
+
+		return
 
 	def decrypt(self, ciphertext):
-		pass
+		keyLen = self.key[0]
+		keyLen = len(keyLen)
+		print(keyLen)
+		rows = len(ciphertext)//keyLen
+		print(rows)
+		plainmatrix = []
+		plaintext = []
+		print("Lol: " + str(0%3))
+		plainmatrix = ["" for i in range(len(ciphertext))]
+		tempmatrix = ["" for i in range(len(ciphertext))]
+		i = 0
+
+		for i in range(0, keyLen):
+			plainmatrix[i] = ciphertext[0:(rows)]
+			ciphertext = ciphertext[rows:]
+
+
+
+
+		print(plaintext)
+		strKey = self.key[0]
+		print(strKey)
+		print(plainmatrix)
+
+
+
+
+
+
+
