@@ -77,8 +77,10 @@ def main():
 	inputFile = sys.argv[4]
 	outputFile = sys.argv[5]
 	myFile = open(inputFile).read()'''
-
-	handleInput(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+	if(len(sys.argv) != 6):
+		handleInput(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+	else:
+		print("Invalid number of arguments!")
 	'''if(cipherName == "PLF"):
 		myCipher = Playfair.Playfair()
 		myCipher.setKey(inputKey)'''
