@@ -46,5 +46,6 @@ class RowTransposition(CipherInterface):
 				count += 1
 			count = 0
 		return ciphertext
+
 	def decrypt(self, ciphertext):
 		pass

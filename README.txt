@@ -9,13 +9,11 @@ Programming Language: Python
 How to run the program:
 ***This was tested on a windows terminal***
 
-python <CIPHER NAME> <KEY> <ENC/DEC> <INPUT FILE> OUTPUT FILE>
+python cipher.py <CIPHER NAME> <KEY> <ENC/DEC> <INPUT FILE> <OUTPUT FILE>
 
 Example: python cipher.py RFC 3 DEC iFile.txt oFile.txt
 
-Extra Credit: 
-Brief Description Done.
-<Todo> Program
-
 Special Info:
-<TODO>
+When entering the key for Row Transposition, seperate with spaces and surround with quotes
+For example,
+"3 1 4 2"
