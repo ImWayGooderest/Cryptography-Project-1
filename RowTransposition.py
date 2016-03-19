@@ -15,25 +15,36 @@ class RowTransposition(CipherInterface):
 				return False
 			count += 1
 		return True
+
 	def encrypt(self, plaintext):
 		numberOfCol = len(self.key)
-
-		textSize = len(plaintext)
-		numberOfRow = math.ceil(textSize/numberOfCol)
+		ciphertext = ""
 		plaintext = plaintext.upper()
-		matrix = [["X" for x in range(numberOfCol)] for x in range(numberOfRow)] #matrix goes matrix[row][col]
-		cipherMatrix = matrix
+		plaintextModified = ""
+		for char in plaintext:#strip out non alphabetic chars
+			if char in self.alphabet:
+				plaintextModified += char
+
+		textSize = len(plaintextModified)
+		numberOfRow = math.ceil(textSize/numberOfCol)
+		plaintextMatrix = [["X" for x in range(numberOfCol)] for x in range(numberOfRow)] #matrix goes matrix[row][col]
+		cipherMatrix = [["X" for x in range(numberOfCol)] for x in range(numberOfRow)]
 		count = 0
 
 		#fill matrix
-		for row in range(0, len(matrix)):
-			for col in range(0,len(matrix[row])):
-				if(count < len(plaintext)):
-					while(plaintext[count] not in self.alphabet and count < len(plaintext)): #skip char if not a letter
-						count += 1
-					matrix[row][col] = plaintext[count]
+		for row in range(0, len(plaintextMatrix)):
+			for col in range(0,len(plaintextMatrix[row])):
+				if(count < len(plaintextModified)):
+					plaintextMatrix[row][col] = plaintextModified[count]
 					count += 1
-
-
+		#shuffle matrix according to
+		count = 0
+		for i in range(0,len(plaintextMatrix[0])):
+			while count < len(plaintextMatrix):
+				cipherMatrix[count][i] = plaintextMatrix[count][int(self.key[i])-1]
+				ciphertext += plaintextMatrix[count][int(self.key[i])-1]
+				count += 1
+			count = 0
+		return ciphertext
 	def decrypt(self, ciphertext):
 		pass
