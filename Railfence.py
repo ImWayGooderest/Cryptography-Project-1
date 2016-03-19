@@ -7,11 +7,9 @@ class Railfence(CipherInterface):
 
     def setKey(self, keyString):
         self.key = int(keyString)
-
-    ###pass
+        return True
 
     def encrypt(self, plaintext):
-        ###pass
         plaintext = plaintext.replace(" ", "")
         ciphertext = []
         myindex = 0
