@@ -80,7 +80,7 @@ class RowTransposition(CipherInterface):
 				temp = int(strKey[index])
 				newmatrix[i][temp-1] += tempmatrix[i][j]
 				index += 1
-				if index == 4:
+				if index == keyLen:
 					index = 0
 
 		for i in range(0, rows):					###plainS becomes our plaintext
