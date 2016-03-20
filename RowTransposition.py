@@ -4,7 +4,6 @@ import math
 class RowTransposition(CipherInterface):
 	def __init__(self):
 		self.key = []
-		self.alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 	def setKey(self, keyString):
 		self.key = keyString.split()
@@ -14,7 +13,7 @@ class RowTransposition(CipherInterface):
 			if int(keyPart) != count:
 				return False
 			count += 1
-		return True
+
 
 	def encrypt(self, plaintext):
 		numberOfCol = len(self.key)
@@ -48,4 +47,52 @@ class RowTransposition(CipherInterface):
 		return ciphertext
 
 	def decrypt(self, ciphertext):
-		pass
+		self.key = list(filter(None, self.key))		###removing empty spaces and converting filter into list
+		keyLen = self.key
+		keyLen = len(keyLen)			###finding the number of columns
+
+		rows = len(ciphertext)//keyLen	###calculating the number of rows
+
+		###generating empty string list
+		plainmatrix = ["" for i in range(len(ciphertext))]
+		tempmatrix = ["" for i in range(len(ciphertext))]
+		newmatrix = [["" for i in range(0, keyLen)] for i in range(0, rows)]
+
+		for i in range(0, keyLen):					###putting ciphertext in plainmatrix,
+			plainmatrix[i] = ciphertext[0:(rows)]	###depending on key length
+			ciphertext = ciphertext[rows:]
+
+
+		index = 0
+		strKey = self.key
+
+		for i in range(0, rows):					###rearranging cipher and placing in tempmatrix
+			for j in range(0, keyLen):
+				tempmatrix[i] += plainmatrix[j][i]
+				index += 1
+				if index == 4:
+					index = 0
+
+		plainS = ""
+		index = 0
+		for i in range(0, rows):					###placing cipher letters in correct row and column,
+			for j in range(0, keyLen):				###based on the key
+				temp = int(strKey[index])
+				newmatrix[i][temp-1] += tempmatrix[i][j]
+				index += 1
+				if index == 4:
+					index = 0
+
+		for i in range(0, rows):					###plainS becomes our plaintext
+			for j in range(0, keyLen):
+				plainS += newmatrix[i][j]
+
+		print("Row Transposition Decryption success!")
+		return plainS
+
+
+
+
+
+
+
