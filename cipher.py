@@ -48,8 +48,8 @@ def handleInput(cipherName, inputKey, encDec, inputFile, outputFile):	###functio
 				cipherText = myCipher.encrypt(iFile)
 				oFile.write(cipherText)
 			else:
-				print(iFile)
-				print(myCipher.decrypt(iFile))
+				plainText = myCipher.decrypt(iFile)
+				oFile.write(plainText)
 		else:
 			print("Invalid Key!")
 

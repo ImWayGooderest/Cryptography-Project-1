@@ -4,6 +4,7 @@ import math
 class RowTransposition(CipherInterface):
 	def __init__(self):
 		self.key = []
+		self.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 	def setKey(self, keyString):
 		self.key = keyString.split()
@@ -13,6 +14,7 @@ class RowTransposition(CipherInterface):
 			if int(keyPart) != count:
 				return False
 			count += 1
+		return True
 
 
 	def encrypt(self, plaintext):

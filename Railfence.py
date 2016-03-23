@@ -19,7 +19,7 @@ class Railfence(CipherInterface):
 
         for i in range(0, intplain):
             ciphertext[myindex] += plaintext[i]
-            myindex = (myindex + 1) % 3
+            myindex = (myindex + 1) % self.key
 
         return "".join(ciphertext)
 
@@ -36,7 +36,7 @@ class Railfence(CipherInterface):
 
         plaintext = ["" for i in range(cipherLen)]
 
-        print(plaintext)
+        ###print(plaintext)
 
         if extra > 0:
             for i in range(0, extra):
@@ -45,8 +45,8 @@ class Railfence(CipherInterface):
 
             for i in range(extra, rails):
                 plaintext[i] = ciphertext[0: col]
-                ciphertext = ciphertext[(col + 1):]
-                print(plaintext)
+                ciphertext = ciphertext[(col):]
+                ###print(plaintext)
 
             test = 0
             for i in range(0, col+1):
@@ -64,13 +64,13 @@ class Railfence(CipherInterface):
             for i in range(0, rails):
                 plaintext[i] = ciphertext[0: col]
                 ciphertext = ciphertext[(col):]
-                print(plaintext)
+                ###print(plaintext)
 
             breakNum = 0
             for i in range(0, col):
                 for j in range(0, rails):
                     plaintextResult += plaintext[j][i]
-                    if(breakNum == cipherLen):
+                    if(breakNum == cipherLen - 1):
                         break
                     breakNum += 1
                     ###print(plaintextResult)

@@ -32,6 +32,7 @@ class Playfair(CipherInterface):
 						alphCount += 1
 					if alphCount < 25:
 						self.matrix[x][y] = self.alphabet[alphCount]
+		return True
 
 
 	def encrypt(self, plaintext):
