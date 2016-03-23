@@ -39,6 +39,7 @@ class Playfair(CipherInterface):
 		plaintext = plaintext.replace(" ","")
 		plaintext = plaintext.upper()
 		plaintext = plaintext.replace('J', 'I')
+		plaintext = plaintext.rstrip()
 		enc = []
 		count = 0
 		while count < len(plaintext):
@@ -75,6 +76,7 @@ class Playfair(CipherInterface):
 		ciphertext = ciphertext.replace(" ","")
 		ciphertext = ciphertext.upper()
 		ciphertext = ciphertext.replace('J', 'I')
+		ciphertext = ciphertext.rstrip()
 		dec = []
 		count = 0
 		while count < len(ciphertext):
